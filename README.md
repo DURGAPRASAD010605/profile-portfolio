@@ -1,20 +1,20 @@
 # 🌟 Durga Prasad – Personal Portfolio Website 🌟
 
 Welcome to my **personal portfolio website** 🎉  
-This project showcases my **skills, education, projects, and contact details** as a **B.Tech Undergraduate** and an aspiring **Full Stack / Web3 Developer** 🚀
+This project showcases my **skills, education, projects, and contact details** as a **B.Tech Undergraduate** and an aspiring **Full Stack Web Developer** 🚀
 
 ---
 
 ## 🔗 Live Demo 🌍
-👉 *Coming soon...*  
-(Will be deployed using **GitHub Pages**)
+👉 https://durgaprasad010605.github.io/profile-portfolio
+(deployed using **GitHub Pages**)
 
 ---
 
 ## 🙋‍♂️ About Me
 Hi! I'm **R Durga Prasad** 👋  
 🎓 **B.Tech (3rd Year)** student at **Kuppam Engineering College**  
-📊 CGPA: **8.7**  
+📊 CGPA: **8.5**  
 
 💡 Interests:
 - 🌐 Web Development  
@@ -50,10 +50,15 @@ Hi! I'm **R Durga Prasad** 👋
 portfolio-website/
 │
 ├── index.html
+|
 ├── style.css
+|
 ├── script.js
+|
 ├── profile.jpeg
+|
 ├── project_1.jpeg
+|
 └── README.md
 
 ---
@@ -90,7 +95,7 @@ Feel free to connect with me! 😊
 👉 https://www.linkedin.com/in/durga-prasad-4a41302aa  
 
 📸 **Instagram**:  
-👉 @durgaprasad_rdp165  
+👉 https://www.instagram.com/durgaprasad_rdp165 
 
 ---
 
