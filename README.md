@@ -5,9 +5,10 @@ This project showcases my **skills, education, projects, and contact details** a
 
 ---
 
-## 🔗 Live Demo 🌍
-👉 https://durgaprasad010605.github.io/profile-portfolio
-(deployed using **GitHub Pages**)
+👉 **Live Site:**  
+https://durgaprasad010605.github.io/profile-portfolio  
+
+🚀 *Deployed using GitHub Pages*
 
 ---
 
@@ -47,19 +48,15 @@ Hi! I'm **R Durga Prasad** 👋
 ## 📁 Project Structure 📂
 (Simple & easy to understand 👇)
 
-portfolio-website/
-│
-├── index.html
-|
-├── style.css
-|
-├── script.js
-|
-├── profile.jpeg
-|
-├── project_1.jpeg
-|
-└── README.md
+portfolio-website/  
+│  
+├── index.html  
+├── style.css  
+├── script.js  
+├── profile.jpeg  
+├── project_1.jpeg  
+└── README.md  
+
 
 ---
 
