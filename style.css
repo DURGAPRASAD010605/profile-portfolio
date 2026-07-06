@@ -1,0 +1,387 @@
+/* ================================================================
+   DESIGN TOKENS
+   Change the whole site's look by editing these variables only.
+   ================================================================ */
+:root{
+  /* --- surfaces --- */
+  --bg:            #0b0b0b;   /* page background, near-black like Netflix */
+  --bg-elevated:   #141414;   /* nav bar / footer background */
+  --bg-card:       #1f1f1f;   /* default card background */
+  --bg-card-hover: #2a2a2a;   /* card background when hovered/expanded */
+
+  /* --- brand accents --- */
+  --red:        #e50914;      /* primary accent — buttons, active states */
+  --red-dark:   #b20710;      /* pressed / gradient partner for red */
+  --gold:       #f5c518;      /* used sparingly: CGPA badge, "match" text */
+
+  /* --- text --- */
+  --text:       #ffffff;
+  --text-muted: #b3b3b3;
+  --text-dim:   #737373;
+
+  /* --- type --- */
+  --font-display: "Bebas Neue", Impact, sans-serif; /* big condensed titles */
+  --font-body:    "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* --- shape / motion --- */
+  --radius: 6px;
+  --ease: cubic-bezier(.4,0,.2,1);
+}
+
+/* ================================================================
+   RESET
+   ================================================================ */
+*{ margin:0; padding:0; box-sizing:border-box; text-decoration:none; border:none; }
+html{ scroll-behavior:smooth; font-size:62.5%; } /* 1rem = 10px */
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font-body);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg{ display:block; max-width:100%; }
+button{ font-family:inherit; background:none; cursor:pointer; }
+a{ color:inherit; }
+
+::-webkit-scrollbar{ width:10px; height:10px; }
+::-webkit-scrollbar-track{ background:var(--bg); }
+::-webkit-scrollbar-thumb{ background:var(--red); border-radius:10px; }
+
+/* Respect users who've asked for reduced motion */
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important; }
+}
+
+/* ================================================================
+   NAV
+   Transparent over the hero; script.js adds ".scrolled" once the
+   user scrolls past the hero, which fades in the solid background.
+   ================================================================ */
+.nav{
+  position:fixed; top:0; left:0; width:100%; z-index:999;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:1.8rem 4%;
+  background:transparent;
+  transition:background .35s var(--ease), box-shadow .35s var(--ease);
+}
+.nav.scrolled{
+  background:var(--bg-elevated);
+  box-shadow:0 4px 20px rgba(0,0,0,.5);
+}
+.nav-left{ display:flex; align-items:center; gap:4rem; }
+
+.logo{
+  font-family:var(--font-display);
+  font-size:2.8rem; letter-spacing:1px;
+  color:var(--red);
+  background:var(--red); color:#fff;
+  padding:.2rem 1rem; border-radius:4px;
+  line-height:1;
+}
+
+.navbar{ display:flex; gap:2.4rem; }
+.nav-link{
+  font-size:1.4rem; font-weight:500; color:var(--text-muted);
+  transition:color .2s var(--ease);
+  white-space:nowrap;
+}
+.nav-link:hover{ color:var(--text); }
+
+#menu-icon{ display:none; font-size:2.8rem; color:var(--text); }
+
+/* ================================================================
+   HERO
+   Pure-CSS animated gradient background (no image files needed).
+   Dark fade at the bottom blends into the rest of the page, same
+   trick Netflix uses under its hero artwork.
+   ================================================================ */
+.hero{
+  position:relative;
+  min-height:100vh;
+  display:flex; align-items:flex-end;
+  padding:0 4% 8rem;
+  overflow:hidden;
+}
+.hero-bg{
+  position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 15% 20%, rgba(229,9,20,.35), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 85% 10%, rgba(245,197,24,.12), transparent 60%),
+    linear-gradient(135deg, #1a0505 0%, #0b0b0b 55%, #0b0b0b 100%);
+  background-size:200% 200%;
+  animation:heroDrift 18s ease-in-out infinite;
+}
+@keyframes heroDrift{
+  0%{ background-position:0% 0%; }
+  50%{ background-position:100% 60%; }
+  100%{ background-position:0% 0%; }
+}
+.hero-fade{
+  position:absolute; left:0; right:0; bottom:0; height:40%;
+  background:linear-gradient(to top, var(--bg) 10%, transparent 100%);
+}
+
+.hero-content{ position:relative; z-index:2; max-width:70rem; }
+
+.hero-eyebrow{
+  font-size:1.3rem; font-weight:700; letter-spacing:3px;
+  color:var(--red); margin-bottom:1rem;
+  animation:fadeUp .7s var(--ease) both;
+}
+.hero-title{
+  font-family:var(--font-display);
+  font-size:clamp(5rem, 11vw, 9rem);
+  line-height:.95; letter-spacing:1px;
+  margin-bottom:1.6rem;
+  animation:fadeUp .8s .1s var(--ease) both;
+}
+@keyframes fadeUp{
+  from{ opacity:0; transform:translateY(24px); }
+  to{ opacity:1; transform:translateY(0); }
+}
+
+.hero-meta{
+  display:flex; align-items:center; gap:1.6rem; flex-wrap:wrap;
+  margin-bottom:1.8rem;
+  animation:fadeUp .8s .2s var(--ease) both;
+}
+.meta-match{ color:#46d369; font-weight:700; font-size:1.5rem; }
+.meta-item{ color:var(--text-muted); font-size:1.5rem; }
+.meta-badge{
+  border:1px solid var(--gold); color:var(--gold);
+  padding:.2rem .8rem; font-size:1.3rem; font-weight:600; border-radius:3px;
+}
+
+.hero-desc{
+  font-size:1.7rem; line-height:1.6; color:#dcdcdc;
+  max-width:56ch; margin-bottom:2.6rem;
+  animation:fadeUp .8s .3s var(--ease) both;
+}
+
+.hero-buttons{
+  display:flex; gap:1.4rem; flex-wrap:wrap; margin-bottom:2.8rem;
+  animation:fadeUp .8s .4s var(--ease) both;
+}
+.btn{
+  display:inline-flex; align-items:center; gap:.8rem;
+  font-size:1.6rem; font-weight:700;
+  padding:1.2rem 2.6rem; border-radius:4px;
+  transition:transform .2s var(--ease), background .2s var(--ease), opacity .2s var(--ease);
+}
+.btn:hover{ transform:scale(1.04); }
+.btn i{ font-size:2.2rem; }
+.btn-play{ background:var(--text); color:#000; }
+.btn-play:hover{ background:rgba(255,255,255,.85); }
+.btn-info{ background:rgba(109,109,110,.5); color:var(--text); }
+.btn-info:hover{ background:rgba(109,109,110,.7); }
+
+.hero-socials{
+  display:flex; gap:1.4rem;
+  animation:fadeUp .8s .5s var(--ease) both;
+}
+.hero-socials a{
+  width:44px; height:44px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:2rem; color:var(--text);
+  border:1px solid rgba(255,255,255,.25);
+  transition:all .2s var(--ease);
+}
+.hero-socials a:hover{ border-color:var(--red); color:var(--red); transform:translateY(-4px); }
+
+/* ================================================================
+   SCROLL-REVEAL
+   Every section with class "reveal" starts hidden/offset; script.js
+   uses an IntersectionObserver to add ".in-view" once it's on screen.
+   ================================================================ */
+.reveal{ opacity:0; transform:translateY(40px); transition:opacity .7s var(--ease), transform .7s var(--ease); }
+.reveal.in-view{ opacity:1; transform:translateY(0); }
+
+/* ================================================================
+   SHARED ROW TITLE
+   ================================================================ */
+.row-title{
+  font-family:var(--font-display);
+  font-size:3rem; letter-spacing:1px;
+  padding:0 4%; margin-bottom:2rem;
+}
+
+/* ================================================================
+   ABOUT
+   ================================================================ */
+.about{ padding:8rem 0 6rem; }
+.about-inner{ padding:0 4%; max-width:90rem; }
+.about-text{ font-size:1.7rem; line-height:1.8; color:#d0d0d0; max-width:70ch; margin-bottom:3.2rem; }
+.about-stats{ display:flex; gap:2rem; flex-wrap:wrap; }
+.stat-card{
+  background:var(--bg-card); border-radius:var(--radius);
+  padding:2.2rem 3rem; text-align:center; min-width:16rem;
+  border-left:3px solid var(--red);
+}
+.stat-num{ display:block; font-family:var(--font-display); font-size:3.6rem; color:var(--gold); }
+.stat-label{ font-size:1.3rem; color:var(--text-muted); }
+
+/* ================================================================
+   ROWS (Skills / Projects / Education)
+   Horizontally scrolling track, hidden native scrollbar, with
+   optional arrow buttons that appear on row hover (desktop).
+   ================================================================ */
+.row-section{ padding:5rem 0; }
+.row-scroll{ position:relative; }
+.row-track{
+  display:flex; gap:1.8rem;
+  padding:1rem 4% 2rem;
+  overflow-x:auto; scroll-behavior:smooth;
+  scrollbar-width:none; -ms-overflow-style:none;
+}
+.row-track::-webkit-scrollbar{ display:none; }
+
+.row-arrow{
+  position:absolute; top:0; bottom:2rem; width:5%;
+  min-width:44px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:3rem; color:var(--text);
+  background:linear-gradient(to right, var(--bg) 20%, transparent);
+  z-index:5; opacity:0; transition:opacity .25s var(--ease);
+}
+.row-arrow-right{ right:0; background:linear-gradient(to left, var(--bg) 20%, transparent); }
+.row-scroll:hover .row-arrow{ opacity:1; }
+@media (hover:none){ .row-arrow{ display:none; } } /* arrows are a desktop-hover convenience only */
+
+/* ----------------------------------------------------------------
+   HOVER PREVIEW CARDS  — the signature interaction of this design.
+   Base state: just an icon thumbnail (like an unfocused poster).
+   Hover state: card scales up and lifts above its neighbours, and
+   the info panel (title + description) fades in underneath —
+   mirroring Netflix's iconic "hover to preview" card behaviour.
+   ---------------------------------------------------------------- */
+.skill-card, .project-card, .season-card{
+  position:relative; flex:0 0 auto;
+  width:26rem;
+  background:var(--bg-card);
+  border-radius:var(--radius);
+  overflow:visible;
+  transition:transform .3s var(--ease), z-index 0s;
+  z-index:1;
+}
+.skill-card:hover, .project-card:hover, .season-card:hover{
+  transform:scale(1.08) translateY(-6px);
+  z-index:10;
+  box-shadow:0 20px 40px rgba(0,0,0,.6);
+}
+
+.card-thumb{
+  height:14rem; border-radius:var(--radius) var(--radius) 0 0;
+  display:flex; align-items:center; justify-content:center;
+  font-size:5rem; color:#fff;
+  position:relative; overflow:hidden;
+}
+/* distinct gradient per card — stands in for a photo/thumbnail */
+.thumb-a{ background:linear-gradient(135deg,#e50914,#7a0d12); }
+.thumb-b{ background:linear-gradient(135deg,#8e2de2,#4a00e0); }
+.thumb-c{ background:linear-gradient(135deg,#f7971e,#c93b0b); }
+.thumb-d{ background:linear-gradient(135deg,#0f9b8e,#0b5b52); }
+.thumb-e{ background:linear-gradient(135deg,#2c3e50,#0b0b0b); }
+.thumb-f{ background:linear-gradient(135deg,#333,#111); }
+
+.card-info{
+  padding:1.4rem 1.6rem;
+  opacity:0; max-height:0; overflow:hidden;
+  transition:opacity .3s var(--ease) .05s, max-height .3s var(--ease);
+}
+/* reveal the description only once the card is hovered/expanded */
+.skill-card:hover .card-info,
+.project-card:hover .card-info,
+.season-card .card-info{ opacity:1; max-height:20rem; }
+
+.card-info h3{ font-size:1.7rem; margin-bottom:.6rem; }
+.card-info p{ font-size:1.3rem; color:var(--text-muted); line-height:1.5; }
+
+/* project-card specifics */
+.play-overlay{
+  position:absolute; inset:0;
+  display:flex; align-items:center; justify-content:center;
+  background:rgba(0,0,0,.35); opacity:0;
+  transition:opacity .25s var(--ease);
+}
+.project-card:hover .play-overlay{ opacity:1; }
+.play-overlay i{ font-size:4rem; }
+.status-badge{
+  position:absolute; top:.8rem; right:.8rem;
+  font-size:1.1rem; font-weight:700; padding:.3rem .8rem;
+  border-radius:3px; letter-spacing:.5px;
+}
+.status-live{ background:#46d369; color:#08320f; }
+.status-progress{ background:var(--gold); color:#3a2c00; }
+
+/* season-card specifics — description always visible (not hover-gated),
+   since these are meant to read like a résumé timeline at a glance */
+.season-card{ display:flex; align-items:stretch; width:32rem; }
+.season-num{
+  font-family:var(--font-display); font-size:3rem;
+  color:var(--red); background:rgba(229,9,20,.1);
+  display:flex; align-items:center; justify-content:center;
+  width:6rem; flex-shrink:0; border-radius:var(--radius) 0 0 var(--radius);
+}
+.season-card .card-info{ opacity:1; max-height:none; padding:1.6rem; }
+.season-year{ font-size:1.2rem; color:var(--gold); font-weight:600; }
+.season-card h3{ margin-top:.4rem; }
+.now-tag{
+  font-size:1rem; background:var(--red); color:#fff;
+  padding:.2rem .6rem; border-radius:3px; margin-left:.8rem; vertical-align:middle;
+}
+.season-current{ border:1px solid var(--red); }
+
+/* ================================================================
+   CONTACT
+   ================================================================ */
+.contact{ padding:8rem 4% 6rem; text-align:center; }
+.contact-title{ padding:0; text-align:center; }
+.contact-sub{ color:var(--text-muted); font-size:1.6rem; margin-bottom:3.2rem; }
+.contact-form{ max-width:80rem; margin:0 auto; display:flex; flex-direction:column; gap:1.6rem; text-align:left; }
+.input-group{ display:flex; gap:1.6rem; flex-wrap:wrap; }
+.input-box{ flex:1; min-width:22rem; }
+.contact-form input, .contact-form textarea{
+  width:100%; padding:1.3rem 1.5rem; font-size:1.5rem;
+  background:var(--bg-card); color:var(--text);
+  border-radius:var(--radius); border:1px solid #333;
+  transition:border-color .2s var(--ease);
+}
+.contact-form input:focus, .contact-form textarea:focus{ outline:none; border-color:var(--red); }
+.contact-form textarea{ min-height:14rem; resize:vertical; }
+.contact-submit{ align-self:center; margin-top:1rem; }
+
+/* ================================================================
+   FOOTER
+   ================================================================ */
+.footer{ padding:4rem 4%; background:var(--bg-elevated); text-align:center; }
+.footer-social{ display:flex; justify-content:center; gap:1.6rem; margin-bottom:1.6rem; }
+.footer-social a{ font-size:2.4rem; color:var(--text-muted); transition:color .2s var(--ease); }
+.footer-social a:hover{ color:var(--red); }
+.list{ list-style:none; display:flex; justify-content:center; gap:2rem; flex-wrap:wrap; margin-bottom:1.6rem; }
+.list a{ font-size:1.4rem; color:var(--text-muted); }
+.list a:hover{ color:var(--text); }
+.copyright{ font-size:1.3rem; color:var(--text-dim); }
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+@media (max-width:880px){
+  .nav-left{ gap:2rem; }
+  .navbar{
+    position:absolute; top:100%; right:0; width:60%;
+    background:rgba(0,0,0,.9);
+    flex-direction:column; align-items:flex-start; gap:0;
+    padding:1rem 2rem; display:none;
+  }
+  .navbar.active{ display:flex; }
+  .nav-link{ padding:1.2rem 0; width:100%; border-bottom:1px solid rgba(255,255,255,.08); }
+  #menu-icon{ display:block; }
+
+  .hero{ padding:0 6% 6rem; }
+  .hero-title{ font-size:clamp(4rem,15vw,6rem); }
+
+  .skill-card, .project-card{ width:20rem; }
+  .season-card{ width:100%; flex-direction:column; }
+  .season-num{ width:100%; height:5rem; border-radius:var(--radius) var(--radius) 0 0; }
+}
