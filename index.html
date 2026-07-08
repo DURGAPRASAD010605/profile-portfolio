@@ -183,71 +183,131 @@
   </section>
 
   <!-- ============================================================
-       PROJECTS ROW
-       ---- TO ADD A PROJECT: copy one .project-card block. ----
-       Change the thumb-x class for a different gradient colour,
-       the <i> icon class for a different Boxicon, and the status
-       badge text/class (status-live / status-progress).
-  ============================================================ -->
-  <section id="projects" class="row-section reveal">
+     PROJECTS
+     NEWEST PROJECTS SHOULD ALWAYS BE ADDED AT THE TOP
+============================================================ -->
+<section id="projects" class="row-section reveal">
+
     <h2 class="row-title">Projects</h2>
 
-    <div class="row-scroll" data-row">
+    <div class="row-scroll" data-row>
 
+        <!-- Left Arrow -->
         <button class="row-arrow row-arrow-left" data-dir="-1" aria-label="Scroll left">
             <i class='bx bx-chevron-left'></i>
         </button>
 
         <div class="row-track">
-          <div class="project-card">
 
-    <div class="card-thumb thumb-f">
-        <i class='bx bx-analyse'></i>
+            <!-- =====================================================
+                  NEW PROJECT Area
+                 
+            ====================================================== -->
 
-        <div class="play-overlay">
-            <i class='bx bx-play'></i>
-        </div>
 
-        <span class="status-badge status-live">Live</span>
-    </div>
-      <!--project 1 -->
-    <div class="card-info">
 
-        <h3>PDF Analyzer</h3>
+            <!-- =====================================================
+                 PROJECT 1 : CryptoLab
+            ====================================================== -->
+            <div class="project-card">
 
-        <p>
-            An intelligent PDF analyzer that extracts text, answers questions, and simplifies academic documents using Python and NLP.
-        </p>
+                <div class="card-thumb thumb-a">
+                    <i class='bx bx-shield-quarter'></i>
 
-        <div class="project-links">
+                    <div class="play-overlay">
+                        <i class='bx bx-play'></i>
+                    </div>
 
-            <a href="https://github.com/DURGAPRASAD010605/pdf-analyzer"
-               target="_blank"
-               rel="noopener"
-               class="btn btn-info">
-                <i class="bx bxl-github"></i>
-                GitHub
-            </a>
+                    <span class="status-badge status-live">Live</span>
+                </div>
 
-            <a href="#"
-               target="_blank"
-               rel="noopener"
-               class="btn btn-play disabled-link">
-                <i class="bx bx-link-external"></i>
-                Live Demo
-            </a>
+                <div class="card-info">
 
-        </div>
+                    <h3>CryptoLab</h3>
 
-    </div>
+                    <p>
+                        A web-based cryptography lab showcasing classical, modern, and custom encryption algorithms through an interactive interface.
+                    </p>
 
-</div>
-            
-            <!-- Project 2 -->
+                    <div class="project-links">
+
+                        <a href="https://github.com/DURGAPRASAD010605/CryptoLab"
+                           target="_blank"
+                           rel="noopener"
+                           class="btn btn-info">
+                            <i class="bx bxl-github"></i>
+                            GitHub
+                        </a>
+
+                        <a href="#"
+                           class="btn btn-play disabled-link">
+                            <i class="bx bx-link-external"></i>
+                            Live Demo
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- END PROJECT 1 -->
+
+
+            <!-- =====================================================
+                 PROJECT 2 : PDF Analyzer
+            ====================================================== -->
+            <div class="project-card">
+
+                <div class="card-thumb thumb-f">
+                    <i class='bx bx-analyse'></i>
+
+                    <div class="play-overlay">
+                        <i class='bx bx-play'></i>
+                    </div>
+
+                    <span class="status-badge status-live">Live</span>
+                </div>
+
+                <div class="card-info">
+
+                    <h3>PDF Analyzer</h3>
+
+                    <p>
+                        An intelligent PDF analyzer that extracts text,
+                        answers questions, and simplifies academic
+                        documents using Python and NLP.
+                    </p>
+
+                    <div class="project-links">
+
+                        <a href="https://github.com/DURGAPRASAD010605/pdf-analyzer"
+                           target="_blank"
+                           rel="noopener"
+                           class="btn btn-info">
+                            <i class="bx bxl-github"></i>
+                            GitHub
+                        </a>
+
+                        <a href="#"
+                           class="btn btn-play disabled-link">
+                            <i class="bx bx-link-external"></i>
+                            Live Demo
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- END PROJECT 2 -->
+
+
+            <!-- =====================================================
+                 PROJECT 3 : B-Tech Study Hub
+            ====================================================== -->
             <div class="project-card">
 
                 <div class="card-thumb thumb-e">
-                    <!-- Replace this icon with your project screenshot later -->
                     <i class='bx bx-book-open'></i>
 
                     <div class="play-overlay">
@@ -262,9 +322,9 @@
                     <h3>B-Tech Study Hub</h3>
 
                     <p>
-                        A centralized education platform for engineering students to
-                        access notes, previous papers, laboratory manuals and other
-                        academic resources in one place.
+                        A centralized education platform for engineering
+                        students to access notes, previous papers,
+                        laboratory manuals, and academic resources.
                     </p>
 
                     <div class="project-links">
@@ -276,10 +336,9 @@
                             <i class="bx bxl-github"></i>
                             GitHub
                         </a>
+
                         <a href="#"
-                           target="_blank"
-                           rel="noopener"
-                           class="btn btn-play">
+                           class="btn btn-play disabled-link">
                             <i class="bx bx-link-external"></i>
                             Live Demo
                         </a>
@@ -289,16 +348,18 @@
                 </div>
 
             </div>
+            <!-- END PROJECT 3 -->
+
         </div>
 
+        <!-- Right Arrow -->
         <button class="row-arrow row-arrow-right" data-dir="1" aria-label="Scroll right">
             <i class='bx bx-chevron-right'></i>
         </button>
 
     </div>
-    
-</section>
 
+</section>
   <!-- ============================================================
        EDUCATION — presented as "Seasons" of one series.
        Numbering is meaningful here: it's a real chronological order.
@@ -386,6 +447,7 @@
       <a href="https://www.instagram.com/durgaprasad_rdp165" target="_blank" rel="noopener" aria-label="Instagram"><i class="bx bxl-instagram"></i></a>
       <a href="https://leetcode.com/u/durgaprasad010605/" target="_blank" rel="noopener" aria-label="LeetCode">
     <i class="devicon-leetcode-plain"></i>
+      </a>
     </div>
 
     <ul class="list">
